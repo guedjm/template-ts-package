@@ -1,14 +1,14 @@
 # Template-ts-package
 Template project for creating node.js package with typescript
 
-##Prerequise
+## Prerequise
 
 To use the Template-ts-package environnement, you need to install 3 packages globally:
 ```
 npm install -g gulp typings tsfmt
 ```
 
-##Getting started
+## Getting started
 
 Start by installing npm dev packages:
 ```
@@ -21,7 +21,7 @@ typings install
 ```
 
 
-##Project structure
+## Project structure
 
 ```
 .
@@ -52,7 +52,7 @@ typings install
 ```
 
 
-##Mains tasks
+## Mains tasks
 
 **gulp build:** Transpile typescript to javascript
 
