@@ -5,7 +5,7 @@ const gulp = require("gulp");
 const bump = require("gulp-bump");
 const prompt = require("gulp-prompt");
 const changelog = require("gulp-changelogmd");
-
+const runSequence = require("run-sequence");
 
 gulp.task("bump", function (cb) {
   gulp.src("./")
@@ -21,12 +21,19 @@ gulp.task("bump", function (cb) {
       }
       else {
         const bumpType = res.bumpType[0];
-
-        gulp.src("./package.json")
-          .pipe(bump({ type: bumpType }))
-          .pipe(gulp.dest("./"))
-          .on('end', cb);
-      }
+ 
+         gulp.src("./package.json")
+            .pipe(bump({ type: bumpType }))
+            .pipe(gulp.dest("./"))
+            .on('end', function (err) {
+              if (bumpType != "patch") {
+                runSequence("changelog", cb);
+              }
+              else {
+               cb(err); 
+              }
+            });      
+        }
     }));
 });
 
